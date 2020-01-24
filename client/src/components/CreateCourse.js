@@ -21,7 +21,7 @@ class CreateCourse extends Component {
         });
     }
 
-    async handleSubmit(e){
+    handleSubmit = async(e) => {
         e.preventDefault();
         try{
             let result = await axios.post(`http://localhost:5000/api/courses`, 
@@ -52,8 +52,7 @@ class CreateCourse extends Component {
                 <div className="bounds course--detail">
                     <h1>Create Course</h1>
                     <div>
-                        {this.state.errors !== '' ? 
-                        (
+                        {this.state.errors.length > 0 ? (
                             <div>
                                 <h2 className="validation--errors--label">Validation errors</h2>
                                 <div className="validation-errors">
@@ -62,18 +61,18 @@ class CreateCourse extends Component {
                                     </ul>
                                 </div>
                             </div>
-                        )
-                        :
-                        (null)}
+                          )
+                        :(null)
+                        }
                         <form onSubmit={this.handleSubmit}>
                             <div className="grid-66">
                                 <div className="course--header">
                                     <h4 className="course--label">Course</h4>
-                                    <div><input id="title" name="title" type="text" className="input-title course--title--input" placeholder="Course title..." onChange={this.handleValueChange} autoFocus /></div>
-                                    <p>By {this.props.context.authenticatedUser.firstName} {this.props.context.authenticatedUser.lastName}  </p>
+                                    <div><input id="title" name="title" type="text" className="input-title course--title--input" placeholder="Course title..." onChange={this.handleValueChange} value='' autoFocus /></div>
+                                    <p>By   </p>
                                 </div>
                                 <div className="course--description">
-                                    <div><textarea id="description" name="description" placeholder="Course description..." onChange={this.handleValueChange} defaultValue={""} /></div>
+                                    <div><textarea id="description" name="description" placeholder="Course description..." onChange={this.handleValueChange} value='' defaultValue={""}></textarea></div>
                                 </div>
                             </div>
                             <div className="grid-25 grid-right">
@@ -81,11 +80,11 @@ class CreateCourse extends Component {
                                     <ul className="course--stats--list">
                                         <li className="course--stats--list--item">
                                             <h4>Estimated Time</h4>
-                                            <div><input id="estimatedTime" name="estimatedTime" type="text" className="course--time--input" placeholder="Hours" onChange={this.handleValueChange} defaultValue={""}/></div>
+                                            <div><input id="estimatedTime" name="estimatedTime" type="text" className="course--time--input" placeholder="Hours" onChange={this.handleValueChange} value='' defaultValue={""}/></div>
                                         </li>
                                         <li className="course--stats--list--item">
                                             <h4>Materials Needed</h4>
-                                            <div><textarea id="materialsNeeded" name="materialsNeeded" placeholder="List materials..."onChange={this.handleValueChange} defaultValue={""} /></div>
+                                            <div><textarea id="materialsNeeded" name="materialsNeeded" placeholder="List materials..." onChange={this.handleValueChange} defaultValue={""}></textarea></div>
                                         </li>
                                     </ul>
                                 </div>
@@ -100,4 +99,6 @@ class CreateCourse extends Component {
         );
     }
 }
-export default CreateCourse;
+export default withRouter(CreateCourse);
+
+//{this.props.context.authenticatedUser.firstName} {this.props.context.authenticatedUser.lastName}

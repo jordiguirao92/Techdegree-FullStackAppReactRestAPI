@@ -7,7 +7,7 @@ class UserSignIn extends Component{
     state ={
         emailAddress: '',
         password: '', 
-        erros:[]
+        errors:[]
     };
 
     handleValueChange = (event) =>{
@@ -24,13 +24,14 @@ class UserSignIn extends Component{
         e.preventDefault();
         try{
                 let result = await this.props.context.actions.signIn(this.state.emailAddress, this.state.password);
-                let user = result.data;
+                let user = result;
                 console.log(user);
                 if (user === null) {
                     this.setState(() => {
                       return { errors: [ 'Sign-in was unsuccessful' ] };
                     });
                   }
+                  this.props.history.push('/');
         } catch(error){
             console.error(error);
             this.props.history.push('/error');

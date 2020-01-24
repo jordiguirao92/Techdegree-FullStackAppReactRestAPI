@@ -6,26 +6,29 @@ const Context = React.createContext();
 
 export class Provider extends Component {
 
+  
   state = {
-    authenticatedUser: Cookies.getJSON('authenticatedUser') || null
+    authenticatedUser: null //Cookies.getJSON('authUser') || null
   };
 
   signIn = async (username, password) => {
     const result = await axios.get('http://localhost:5000/api/users', {auth: {username: username, password: password}});
     let user = result.data;
+    console.log(user);
+    console.log(result.data.firstName);
+    
      //if (user !== null)
     //this.setState(() => {return {authenticatedUser: user};});
-    this.setState(prevState => ({authenticatedUser: user}));
-    const cookieOptions = {expires: 1};
-      //The first argument passed to Cookies.set() specifies the name of the cookie to set. Pass 'authenticatedUser' as the cookie name:
-    Cookies.set('authenticatedUser', JSON.stringify(user), {cookieOptions});
-    this.props.history.push('/');
+    this.setState({authenticatedUser: user});
+  
+    //The first argument passed to Cookies.set() specifies the name of the cookie to set. Pass 'authUser' as the cookie name:
+    //Cookies.set('authUser', JSON.stringify(user), {expires: 1});
     return user;
   }
 
   signOut = () => {
     this.setState({ authenticatedUser: null });
-    Cookies.remove('authenticatedUser');
+    Cookies.remove('authUser');
   }
 
   render() {
@@ -44,6 +47,7 @@ export class Provider extends Component {
     );
   }
 }
+
 
 export const Consumer = Context.Consumer;
 

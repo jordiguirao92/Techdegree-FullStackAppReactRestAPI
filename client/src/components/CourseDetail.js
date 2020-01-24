@@ -16,7 +16,7 @@ class CourseDetail extends Component {
         this.getCourse();
     }
 
-    async getCourse() {
+    getCourse = async() => {
         try{
             let result = await axios.get(`http://localhost:5000/api/courses/${this.props.match.params.id}`);
             console.log(result.data);
@@ -32,7 +32,7 @@ class CourseDetail extends Component {
           }
     }
 
-    async deleteCourse(e){
+    deleteCourse= async(e) => {
         e.preventDefault();
         await axios.delete(`http://localhost:5000/api/courses/${this.props.match.params.id}`, 
             {auth: {username: this.props.context.authenticatedUser.emailAddress, password: this.props.context.authenticatedUser.password }});

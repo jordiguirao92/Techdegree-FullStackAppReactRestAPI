@@ -11,7 +11,7 @@ class UserSignUp extends Component{
         emailAddress: '',
         password: '',
         confirmPassword: '',
-        erros:[]
+        errors: []
     };
 
     handleValueChange = (event) =>{
@@ -31,17 +31,14 @@ class UserSignUp extends Component{
             if(this.state.password !== this.state.confirmPassword){
                 let passwordMatchValidation = <li className="validation-error" key="1000">Password value does not match Password Confirmation value</li>
                 this.setState(prevState => ({
-                    errors: [
-                        ...prevState.errors,
-                        [ passwordMatchValidation ]
-                    ]
-                }));
+                    errors: [...prevState.errors, passwordMatchValidation]}));
             } else {
                 let params = {firstName: this.state.firstName, lastName: this.state.lastName, emailAddress: this.state.emailAddress, password: this.state.password};
                 let result = await axios.post(`http://localhost:5000/api/users`, params);
                 console.log(result);
-                this.props.context.actions.signIn(this.state.emailAddress, this.state.password);
+                //await this.props.context.actions.signIn(this.state.emailAddress, this.state.password);
                 this.props.history.push(`/`);
+                
             }
         } catch(error){
             if(error.response.status === 400){
@@ -65,8 +62,7 @@ class UserSignUp extends Component{
         <div className="bounds">
         <div className="grid-33 centered signin">
             <h1>Sign Up</h1>
-            {/* checking if theres any errors, if so show them */}
-            {this.state.error !== '' ? (
+            {this.state.errors.length > 0 ? (
                 <div>
                     <h2 className="validation--errors--label">Validation errors</h2>
                     <div className="validation-errors">
@@ -104,3 +100,11 @@ class UserSignUp extends Component{
 }
 
 export default withRouter(UserSignUp);
+
+
+/*this.setState(prevState => ({
+    errors: [
+        ...prevState.errors,
+        [ passwordMatchValidation ]
+    ]
+}));*/
