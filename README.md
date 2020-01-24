@@ -1,5 +1,5 @@
 # Techdegree-FullStackAppReactRestAPI
- Treehouse - Project 10
+ Treehouse - Project 10: a Full Stack App with React and a REST API. 
 
  In order to run this project, please follow the following steps:
 
@@ -12,7 +12,7 @@
  4. Run the server in the terminal using ```npm start```. Your server is going to run in http://localhost:5000.
 
  Run the client: 
- 
+
  5. Enter in the client folder and run ```npm install```.
  6. Run the cliente site in the terminal usign ```npm start```. Your client is going to run in http://localhost:3000.
 
