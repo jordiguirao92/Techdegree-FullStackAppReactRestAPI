@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 
-
+//Header component that check if the are an authenticatedUser or not. 
 class Header extends Component {
  render(){
     return(

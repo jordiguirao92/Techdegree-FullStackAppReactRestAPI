@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
+//Importing components
 import withContext from './components/Context/Context';
 import PrivateRoute from './components/PrivateRoute';
 
@@ -19,6 +20,7 @@ import NotFound from './components/NotFound';
 import Forbidden from './components/Forbidden';
 import UnhandledError from './components/UnhandleError';
 
+//Providing components access to the Context component. 
 const HeaderWithContext = withContext(Header);
 const CourseDetailWithContext = withContext(CourseDetail);
 const CreateCourseWithContext = withContext(CreateCourse);

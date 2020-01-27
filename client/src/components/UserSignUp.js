@@ -14,6 +14,7 @@ class UserSignUp extends Component{
         errors: []
     };
 
+    //Function to change the state when the value input is changing.
     handleValueChange = (event) =>{
         let name = event.target.name;
         let value = event.target.value;
@@ -22,6 +23,7 @@ class UserSignUp extends Component{
         });
     }
 
+    //Function to create a new user in the database. It checks that the password and confirmPassword are tha seme. After that whe create a new user in the database. 
     handleSubmit = async (e) => {
         e.preventDefault();
         this.setState({

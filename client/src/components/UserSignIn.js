@@ -10,6 +10,7 @@ class UserSignIn extends Component{
         errors:[]
     };
 
+    //Function to change the state when the value input is changing.
     handleValueChange = (event) =>{
         const name = event.target.name;
         const value = event.target.value;
@@ -20,6 +21,7 @@ class UserSignIn extends Component{
         }); 
     }
 
+    //Function to connect with the signIn function in the Context.js component. 
     handleSubmit = async(e) => {
         e.preventDefault();
         try{

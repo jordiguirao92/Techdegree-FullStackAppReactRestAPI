@@ -19,7 +19,6 @@ export class Provider extends Component {
      if (user !== null){
       this.setState({authenticatedUser: user, password: password});
      }
-    console.log(this.state.password);
   
     //The first argument passed to Cookies.set() specifies the name of the cookie to set. Pass 'authUser' as the cookie name:
     Cookies.set('authUser', JSON.stringify(user), {expires: 1});

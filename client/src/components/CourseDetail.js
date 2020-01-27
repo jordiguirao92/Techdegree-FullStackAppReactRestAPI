@@ -15,6 +15,7 @@ class CourseDetail extends Component {
         this.getCourse();
     }
 
+    //Api request in order to get the course information. 
     getCourse = async() => {
         try{
             let result = await axios.get(`http://localhost:5000/api/courses/${this.props.match.params.id}`);
@@ -31,6 +32,7 @@ class CourseDetail extends Component {
           }
     }
 
+    //Function to delate the course from the database. It needs that the user is the course owner. 
     deleteCourse = async(e) => {
         e.preventDefault();
         await axios.delete(`http://localhost:5000/api/courses/${this.props.match.params.id}`, 

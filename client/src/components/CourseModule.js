@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
+//Course card 
 const CourseModule = (props) => {
     return(
      <div className="grid-33">

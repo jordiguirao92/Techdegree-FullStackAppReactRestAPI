@@ -15,7 +15,7 @@ componentDidMount(){
     this.coursesSearch();
   }
 
-
+//API request to get all the courses in the data base. After that the set the courses information to the component state.
 coursesSearch = async() => {
   try{
     let result = await axios.get('http://localhost:5000/api/courses');

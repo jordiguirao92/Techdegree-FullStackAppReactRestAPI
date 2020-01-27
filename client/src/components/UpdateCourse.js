@@ -17,6 +17,7 @@ async componentDidMount() {
     
 }
 
+//Function in order to get the indicated course in the route. After that we set the information of the course to the component state. 
 async getCourse() {
     try{
         let result = await axios.get(`http://localhost:5000/api/courses/${this.props.match.params.id}`);
@@ -36,6 +37,7 @@ async getCourse() {
       }
 }
 
+//Function to change the state when the value input is changing.
 handleValueChange = (event) => {
     let name = event.target.name;
     let value = event.target.value;
@@ -44,6 +46,7 @@ handleValueChange = (event) => {
     });
 }
 
+//API request in order to update the course details. 
 handleSubmit = async(e) => {
     e.preventDefault();
     try{

@@ -13,6 +13,7 @@ class CreateCourse extends Component {
         errors:[] 
     };
 
+    //Function to change the state when the value input is changing.
     handleValueChange = (event) => {
         let name = event.target.name;
         let value = event.target.value;
@@ -21,6 +22,7 @@ class CreateCourse extends Component {
         });
     }
 
+    //API request in order to create a new course in the database.
     handleSubmit = async(e) => {
         e.preventDefault();
         try{
