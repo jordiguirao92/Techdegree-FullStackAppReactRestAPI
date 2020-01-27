@@ -8,7 +8,7 @@ export class Provider extends Component {
 
   
   state = {
-    authenticatedUser: null, //Cookies.getJSON('authUser') || null
+    authenticatedUser: Cookies.getJSON('authUser') || null,
     password: ''
   };
 
@@ -22,7 +22,7 @@ export class Provider extends Component {
     console.log(this.state.password);
   
     //The first argument passed to Cookies.set() specifies the name of the cookie to set. Pass 'authUser' as the cookie name:
-    //Cookies.set('authUser', JSON.stringify(user), {expires: 1});
+    Cookies.set('authUser', JSON.stringify(user), {expires: 1});
     return user;
   }
 
