@@ -53,9 +53,7 @@ class App extends Component {
           <Route exact path='/notfound' component={NotFound} />
           <Route exact path='/forbidden' component={Forbidden} />
           <Route exact path='/error' component={UnhandledError} />
-          <Route component={NotFound}/>
-          
-        
+          <Route component={NotFound}/>  
         </Switch>
         </div>
         

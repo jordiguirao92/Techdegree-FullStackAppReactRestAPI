@@ -9,7 +9,6 @@ class CourseDetail extends Component {
     state = {
         course:{},
         user:{},
-        courseOwner: false
     };
 
     componentDidMount() {
@@ -22,7 +21,7 @@ class CourseDetail extends Component {
             console.log(result.data);
             this.setState({
               course: result.data,
-              user: result.data.User,
+              user: result.data.User
             });
           } catch (error) {
             console.log('Error fetching and parsing data', error);
@@ -32,10 +31,10 @@ class CourseDetail extends Component {
           }
     }
 
-    deleteCourse= async(e) => {
+    deleteCourse = async(e) => {
         e.preventDefault();
         await axios.delete(`http://localhost:5000/api/courses/${this.props.match.params.id}`, 
-            {auth: {username: this.props.context.authenticatedUser.emailAddress, password: this.props.context.authenticatedUser.password }});
+            {auth: {username: this.props.context.authenticatedUser.emailAddress, password: this.props.context.password }});
         this.props.history.push('/');
     }
 

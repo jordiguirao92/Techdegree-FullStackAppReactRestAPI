@@ -22,10 +22,10 @@ async getCourse() {
         let result = await axios.get(`http://localhost:5000/api/courses/${this.props.match.params.id}`);
         console.log(result.data);
         this.setState({
-            title: result.data.course.title,
-            description: result.data.course.description,
-            estimatedTime: result.data.course.estimatedTime,
-            materialsNeeded:result.data.course.materialsNeeded,
+            title: result.data.title,
+            description: result.data.description,
+            estimatedTime: result.data.estimatedTime,
+            materialsNeeded:result.data.materialsNeeded,
         });
       } catch (error) {
         console.log('Error fetching and parsing data', error);
@@ -74,7 +74,7 @@ render(){
     return(
         <div className="bounds course--detail">
             <h1>Update Course</h1>
-                {this.state.errors !== '' ? 
+                {this.state.errors.length > 0 ? 
                 (
                     <div>
                         <h2 className="validation--errors--label">Validation errors</h2>
@@ -95,7 +95,7 @@ render(){
                     <div className="course--header">
                     <h4 className="course--label">Course</h4>
                     <div><input id="title" name="title" type="text" className="input-title course--title--input" placeholder="Course title..." value={this.state.title} onChange={this.handleValueChange} autoFocus/></div>
-                    <p>By {this.props.context.state.firstName} {this.props.context.state.lastName}</p>
+                    <p>By {this.props.context.authenticatedUser.firstName} {this.props.context.authenticatedUser.lastName}</p>
                     </div>
                     <div className="course--description">
                     <div><textarea id="description" name="description" placeholder="Course description..." value={this.state.description} onChange={this.handleValueChange}/>

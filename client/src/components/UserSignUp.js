@@ -36,7 +36,7 @@ class UserSignUp extends Component{
                 let params = {firstName: this.state.firstName, lastName: this.state.lastName, emailAddress: this.state.emailAddress, password: this.state.password};
                 let result = await axios.post(`http://localhost:5000/api/users`, params);
                 console.log(result);
-                //await this.props.context.actions.signIn(this.state.emailAddress, this.state.password);
+                await this.props.context.actions.signIn(this.state.emailAddress, this.state.password);
                 this.props.history.push(`/`);
                 
             }
