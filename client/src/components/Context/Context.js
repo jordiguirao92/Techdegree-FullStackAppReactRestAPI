@@ -9,7 +9,7 @@ export class Provider extends Component {
   
   state = {
     authenticatedUser: Cookies.getJSON('authUser') || null,
-    password: ''
+    password: Cookies.getJSON('authUserPsw') || null
   };
 
   signIn = async (username, password) => {
@@ -23,12 +23,14 @@ export class Provider extends Component {
   
     //The first argument passed to Cookies.set() specifies the name of the cookie to set. Pass 'authUser' as the cookie name:
     Cookies.set('authUser', JSON.stringify(user), {expires: 1});
+    Cookies.set('authUserPsw', JSON.stringify(password), {expires: 1});
     return user;
   }
 
   signOut = () => {
     this.setState({ authenticatedUser: null });
     Cookies.remove('authUser');
+    Cookies.remove('authUserPsw');
   }
 
   render() {

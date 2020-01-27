@@ -34,7 +34,7 @@ class CourseDetail extends Component {
     deleteCourse = async(e) => {
         e.preventDefault();
         await axios.delete(`http://localhost:5000/api/courses/${this.props.match.params.id}`, 
-            {auth: {username: this.props.context.authenticatedUser.emailAddress, password: this.props.context.password }});
+            {auth: {username: this.props.context.authenticatedUser.emailAddress, password: this.props.context.password}});
         this.props.history.push('/');
     }
 

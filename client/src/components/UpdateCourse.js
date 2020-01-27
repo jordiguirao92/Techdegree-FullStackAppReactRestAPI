@@ -44,13 +44,13 @@ handleValueChange = (event) => {
     });
 }
 
-async handleSubmit(e){
+handleSubmit = async(e) => {
     e.preventDefault();
     try{
-        await axios.put(`http://localhost:5000/api/courses/${this.props.match.params.id}`, 
-            {auth: {username: this.props.context.authenticatedUser.emailAddress, password: this.props.context.authenticatedUser.password },
-                data: {title: this.state.title, description: this.state.description, estimatedTime: this.state.estimatedTime, materialsNeeded: this.state.materialsNeeded}});
+        let params = {title: this.state.title, description: this.state.description, estimatedTime: this.state.estimatedTime, materialsNeeded: this.state.materialsNeeded}
+        await axios({method: "put", url: `http://localhost:5000/api/courses/${this.props.match.params.id}`, auth: { username: this.props.context.authenticatedUser.emailAddress, password: this.props.context.password}, data: params});
         this.props.history.push(`/courses/${this.props.match.params.id}`);
+
     } catch(error){
         if(error.response.status === 401) {
             this.props.history.push('/signin');
@@ -66,7 +66,7 @@ async handleSubmit(e){
             this.setState({
                 errors: errorMessage
             });
-        }
+       }
     }
 }
 
@@ -130,7 +130,26 @@ render(){
 
 export default withRouter(UpdateCourse);
 
+//data: {title: this.state.title, description: this.state.description, estimatedTime: this.state.estimatedTime, materialsNeeded: this.state.materialsNeeded}
 
+/*let params = {title: this.state.title, description: this.state.description, userId:this.props.context.authenticatedUser.id , estimatedTime: this.state.estimatedTime, materialsNeeded: this.state.materialsNeeded}
+        await axios.put(`http://localhost:5000/api/courses/${this.props.match.params.id}`, 
+            {auth: {username: this.props.context.authenticatedUser.emailAddress, password: this.props.context.password }, params }); */
 
+/* if(error.response.status === 401) {
+            this.props.history.push('/signin');
+        }
+
+        if(error.response.status === 400){
+            let errors = error.response.data.errors;
+            let errorMessage = errors.map(
+                (error, index) => (
+                    <li key={index}>{error}</li>
+                )
+            );
+            this.setState({
+                errors: errorMessage
+            });
+        } */
 
 
