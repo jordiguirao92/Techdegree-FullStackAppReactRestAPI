@@ -103,5 +103,6 @@ class CreateCourse extends Component {
 }
 export default withRouter(CreateCourse);
 
+
 //{this.props.context.authenticatedUser.firstName} {this.props.context.authenticatedUser.lastName}
 
